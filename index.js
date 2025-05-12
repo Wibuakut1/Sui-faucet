@@ -1,7 +1,13 @@
 require('dotenv').config();
 const fs = require('node:fs');
 const path = require('node:path');
+const express = require('express');
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
+
+// Inisialisasi Web Server (agar Glitch tidak sleep)
+const app = express();
+app.get("/", (req, res) => res.send("Bot is alive!"));
+app.listen(3000, () => console.log("Web server running on port 3000"));
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 client.commands = new Collection();
